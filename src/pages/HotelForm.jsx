@@ -1,7 +1,7 @@
 // src/pages/HotelForm.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./hotelform.css";
+import "./HotelForm.css";
 
 export default function HotelForm() {
   const [formData, setFormData] = useState({
