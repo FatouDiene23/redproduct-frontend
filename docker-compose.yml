@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redproduct-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    # Variables d'environnement (optionnel)
+    # environment:
+    #   - REACT_APP_API_URL=https://api.example.com
+    #   - REACT_APP_ENV=production
+    networks:
+      - redproduct-network
+    # Health check pour vérifier que nginx fonctionne
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  redproduct-network:
+    driver: bridge
