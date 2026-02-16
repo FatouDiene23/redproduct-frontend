@@ -3,10 +3,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = "gihhubu diaraa"
+        DOCKERHUB_USER = "https://hub.docker.com/repository/docker/boussofaye/redproduct-backend/general"
         IMAGE_NAME = "${DOCKERHUB_USER}/frontend_devops"
         IMAGE_TAG  = "1.${BUILD_NUMBER}"
-        DOCKER_CREDENTIALS_ID = "dockerhub-creds"
+        DOCKER_CREDENTIALS_ID = "dockerhub-credentials"
     }
 
     stages {
