@@ -1,32 +1,25 @@
-# Stage 1: Build de l'application React
+# Stage 1: Build
 FROM node:20-alpine AS build
 
-# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers de dépendances
-COPY package*.json ./
+# Argument pour l'URL API (défaut pour dev local)
+ARG VITE_API_URL=http://localhost:8000
 
-# Installer TOUTES les dépendances (y compris devDependencies pour le build)
+COPY package*.json ./
 RUN npm ci
 
-# Copier le reste des fichiers du projet
 COPY . .
 
-# Build de l'application
-RUN npm run build
+# Build avec la variable d'environnement
+RUN VITE_API_URL=${VITE_API_URL} npm run build
 
-# Stage 2: Servir l'application avec Nginx
+# Stage 2: Nginx
 FROM nginx:alpine
 
-# Copier la configuration nginx personnalisée
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copier les fichiers buildés depuis le stage précédent
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Exposer le port 80
 EXPOSE 80
 
-# Démarrer nginx
 CMD ["nginx", "-g", "daemon off;"]
