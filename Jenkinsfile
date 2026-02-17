@@ -2,11 +2,12 @@ pipeline {
 
     agent any
     tools {
-            nodejs "Node-20"
+            nodejs "Node-22"
         }
+   docker { image 'node:22' }
 
     environment {
-        DOCKERHUB_USER = "https://hub.docker.com/repository/docker/boussofaye/redproduct-backend/general"
+        DOCKERHUB_USER = "boussofaye"
         IMAGE_NAME = "${DOCKERHUB_USER}/frontend_devops"
         IMAGE_TAG  = "1.${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = "dockerhub-credentials"
