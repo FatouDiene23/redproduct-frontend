@@ -144,7 +144,7 @@ export default function Inscription() {
         <p style={{ fontSize: "0.875rem", marginTop: "0.5rem", color: "white" }}>
           Vous avez déjà un compte ?{" "}
           <Link to="/login" style={{ color: "#FACC15", textDecoration: "underline" }}>
-            Se connecter
+            Se connecter   vous
           </Link>
         </p>
       </div>
