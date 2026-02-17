@@ -4,7 +4,6 @@ pipeline {
     tools {
             nodejs "Node-22"
         }
-   docker { image 'node:22' }
 
     environment {
         DOCKERHUB_USER = "boussofaye"
