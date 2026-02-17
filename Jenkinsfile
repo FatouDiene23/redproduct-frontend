@@ -1,6 +1,9 @@
 pipeline {
 
     agent any
+    tools {
+            nodejs "Node-20"
+        }
 
     environment {
         DOCKERHUB_USER = "https://hub.docker.com/repository/docker/boussofaye/redproduct-backend/general"
